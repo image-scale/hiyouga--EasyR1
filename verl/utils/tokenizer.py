@@ -14,10 +14,30 @@
 
 from typing import Any
 
+from transformers import AutoProcessor, AutoTokenizer
+
 
 def get_tokenizer(model_name: str, use_fast: bool = True) -> Any:
-    raise NotImplementedError
+    """Load a tokenizer from HuggingFace.
+
+    Args:
+        model_name: The model name or path to load the tokenizer from.
+        use_fast: Whether to use the fast tokenizer implementation.
+
+    Returns:
+        The loaded tokenizer.
+    """
+    return AutoTokenizer.from_pretrained(model_name, use_fast=use_fast, trust_remote_code=True)
 
 
 def get_processor(model_name: str, use_fast: bool = True) -> Any:
-    raise NotImplementedError
+    """Load a processor from HuggingFace (for vision-language models).
+
+    Args:
+        model_name: The model name or path to load the processor from.
+        use_fast: Whether to use the fast tokenizer implementation.
+
+    Returns:
+        The loaded processor.
+    """
+    return AutoProcessor.from_pretrained(model_name, use_fast=use_fast, trust_remote_code=True)
